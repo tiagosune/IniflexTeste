@@ -2,13 +2,11 @@ package org.example.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Funcionario extends Pessoa {
 
     private BigDecimal salario;
-    private String funcao;
+    private final String funcao;
 
     public Funcionario (String nome, LocalDate dataNascimento, BigDecimal salario, String funcao){
         super(nome, dataNascimento);
@@ -26,10 +24,6 @@ public class Funcionario extends Pessoa {
 
     public void setSalario(BigDecimal salario) {
         this.salario = salario;
-    }
-
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
     }
 
 }
