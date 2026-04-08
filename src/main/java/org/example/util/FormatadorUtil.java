@@ -14,6 +14,11 @@ public class FormatadorUtil {
     private static final NumberFormat NUMBER_FORMAT =
             NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
 
+    static {
+        NUMBER_FORMAT.setMinimumFractionDigits(2);
+        NUMBER_FORMAT.setMaximumFractionDigits(2);
+    }
+
     public static String formatarData(java.time.LocalDate data) {
         return DATA_FORMATTER.format(data);
     }
