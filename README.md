@@ -68,4 +68,4 @@ Principal.java
 ## 👨‍💻 Autor
 
 Desenvolvido por **Tiago Duarte** 🚀
-[LinkedIn](https://linkedin.com/in/tiagosunedev) | [Site](https://tiagosune.com)
+[LinkedIn](https://linkedin.com/in/tiagosunedev) | [Meu Site](https://tiagosune.com)
