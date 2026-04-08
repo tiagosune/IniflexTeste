@@ -12,7 +12,7 @@ public class FormatadorUtil {
             DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private static final NumberFormat NUMBER_FORMAT =
-            NumberFormat.getInstance(new Locale("pt", "BR"));
+            NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
 
     public static String formatarData(java.time.LocalDate data) {
         return DATA_FORMATTER.format(data);
