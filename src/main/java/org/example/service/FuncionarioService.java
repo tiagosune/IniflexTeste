@@ -28,12 +28,11 @@ public class FuncionarioService {
 
     public static void removerFuncionario(List<Funcionario> lista, String nome) {
         lista.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
-        System.out.println("\nFuncionário removido: " + nome);
     }
 
-    public static void aplicarAumento(List<Funcionario> lista, BigDecimal percentual) {
+    public static void aplicarAumento(List<Funcionario> lista, BigDecimal aumento) {
         lista.forEach(f ->
-                f.setSalario(f.getSalario().multiply(percentual))
+                f.setSalario(f.getSalario().multiply(aumento))
         );
     }
 
