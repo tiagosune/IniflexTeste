@@ -4,8 +4,8 @@ import org.example.model.Funcionario;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FuncionarioService {
 
@@ -26,4 +26,48 @@ public class FuncionarioService {
         return funcionarios;
     }
 
+    public static void removerFuncionario(List<Funcionario> lista, String nome) {
+        lista.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
+    }
+
+    public static void aplicarAumento(List<Funcionario> lista, BigDecimal percentual) {
+        lista.forEach(f ->
+                f.setSalario(f.getSalario().multiply(percentual))
+        );
+    }
+
+    public static Map<String, List<Funcionario>> agruparPorFuncao(List<Funcionario> lista) {
+        return lista.stream()
+                .collect(Collectors.groupingBy(Funcionario::getFuncao));
+    }
+
+    public static List<Funcionario> filtrarPorMes(List<Funcionario> lista, int... meses) {
+        return lista.stream()
+                .filter(f -> {
+                    int mes = f.getDataNascimento().getMonthValue();
+                    for (int m : meses) {
+                        if (mes == m) return true;
+                    }
+                    return false;
+                })
+                .toList();
+    }
+
+    public static Funcionario buscarMaisVelho(List<Funcionario> lista) {
+        return lista.stream()
+                .min(Comparator.comparing(Funcionario::getDataNascimento))
+                .orElseThrow();
+    }
+
+    public static List<Funcionario> ordenarPorNome(List<Funcionario> lista) {
+        return lista.stream()
+                .sorted(Comparator.comparing(Funcionario::getNome))
+                .toList();
+    }
+
+    public static BigDecimal somarSalarios(List<Funcionario> lista) {
+        return lista.stream()
+                .map(Funcionario::getSalario)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }
