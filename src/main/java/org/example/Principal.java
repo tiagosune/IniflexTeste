@@ -5,6 +5,7 @@ import org.example.service.FuncionarioService;
 import org.example.util.FormatadorUtil;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -42,7 +43,7 @@ public class Principal {
 
         System.out.println("\n--- Agrupados ---");
         agrupados.forEach((funcao, lista) -> {
-            System.out.println("** " + funcao + "**\n");
+            System.out.println("** " + funcao + " **\n");
             lista.forEach(f -> System.out.println(f.getNome()));
             System.out.println();
         });
@@ -61,13 +62,16 @@ public class Principal {
                 .forEach(f -> System.out.println(f.getNome()));
 
         System.out.println("\nTotal salários: " +
-                FormatadorUtil.formatarSalario(FuncionarioService.somarSalarios(funcionarios)));
+                FormatadorUtil
+                        .formatarSalario(FuncionarioService
+                                .somarSalarios(funcionarios)
+                                .setScale(2, RoundingMode.HALF_UP)));
 
         BigDecimal salarioMinimo = new BigDecimal("1212.00");
 
         System.out.println("\n--- Salários mínimos ---");
         funcionarios.forEach(f -> {
-            BigDecimal qtd = f.getSalario().divide(salarioMinimo, 2, BigDecimal.ROUND_HALF_UP);
+            BigDecimal qtd = f.getSalario().divide(salarioMinimo, 2, RoundingMode.HALF_UP);
             System.out.println(f.getNome() + ": " + qtd);
         });
     }
