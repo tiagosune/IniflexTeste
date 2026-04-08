@@ -27,6 +27,7 @@ public class Principal {
         ));
 
         FuncionarioService.removerFuncionario(funcionarios, "João");
+        System.out.println("\nFuncionário João removido");
 
         System.out.println("\n--- Funcionários ---");
         funcionarios.forEach(f -> System.out.println(
@@ -37,6 +38,11 @@ public class Principal {
         ));
 
         FuncionarioService.aplicarAumento(funcionarios, new BigDecimal("1.10"));
+
+        System.out.println("\n--- Salários após aumento ---");
+        funcionarios.forEach(f -> System.out.println(
+                f.getNome() + " - Salário após aumento: " + FormatadorUtil.formatarSalario(f.getSalario())
+        ));
 
         Map<String, List<Funcionario>> agrupados =
                 FuncionarioService.agruparPorFuncao(funcionarios);
