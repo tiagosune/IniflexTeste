@@ -28,6 +28,7 @@ public class FuncionarioService {
 
     public static void removerFuncionario(List<Funcionario> lista, String nome) {
         lista.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
+        System.out.println("\nFuncionário removido: " + nome);
     }
 
     public static void aplicarAumento(List<Funcionario> lista, BigDecimal percentual) {
